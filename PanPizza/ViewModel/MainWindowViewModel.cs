@@ -30,18 +30,8 @@ namespace PanPizza.ViewModel
         }
 
         #endregion
-        private List<string> size = new List<string>();
-        public List<string> Size
-        {
-            get
-            {
-                return size;
-            }
-            set
-            {
-                size = value;
-            }
-        }
+
+        public List<string> Size { get; set; } = new List<string>();
 
         private void InputSize()
         {
@@ -50,18 +40,7 @@ namespace PanPizza.ViewModel
             Size.Add("Velika");
         }
 
-        private List<Ingredients> zacini = new List<Ingredients>();
-        public List<Ingredients> Zacini
-        {
-            get
-            {
-                return zacini;
-            }
-            set
-            {
-                zacini = value;
-            }
-        }
+        public List<Ingredients> Zacini { get; set; } = new List<Ingredients>();
 
         private void UnosZacina()
         {
@@ -76,16 +55,16 @@ namespace PanPizza.ViewModel
             Ingredients i9 = new Ingredients("Susam", 0);
             Ingredients i10 = new Ingredients("Sir", 20);
 
-            zacini.Add(i1);
-            zacini.Add(i2);
-            zacini.Add(i3);
-            zacini.Add(i4);
-            zacini.Add(i5);
-            zacini.Add(i6);
-            zacini.Add(i7);
-            zacini.Add(i8);
-            zacini.Add(i9);
-            zacini.Add(i10);
+            Zacini.Add(i1);
+            Zacini.Add(i2);
+            Zacini.Add(i3);
+            Zacini.Add(i4);
+            Zacini.Add(i5);
+            Zacini.Add(i6);
+            Zacini.Add(i7);
+            Zacini.Add(i8);
+            Zacini.Add(i9);
+            Zacini.Add(i10);
         }
 
         private ICommand manageNewPizza;
@@ -163,7 +142,7 @@ namespace PanPizza.ViewModel
                 mainWindow.btnRacun.IsEnabled = false;
                 mainWindow.btnNova.IsEnabled = true;
 
-                Thread t1 = new Thread(() => slanjeSMS());
+                Thread t1 = new Thread(SlanjeSms);
                 t1.Start();     
             }
      
@@ -225,12 +204,12 @@ namespace PanPizza.ViewModel
             }
             }
         }
-        private bool CanManagePorudzbinaExecute()
+        private static bool CanManagePorudzbinaExecute()
         {
             return true;
         }
        
-        private static void slanjeSMS()
+        private static void SlanjeSms()
         {
             TwilioClient.Init("AC191d51f60bdfc6186ae168b8ff857d4f", "d683d30561422ad700a4c520b559ea53");
               MessageResource.Create(
